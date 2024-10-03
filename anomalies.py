@@ -28,4 +28,8 @@ def simulate():
         print(f"Data: {point}, Anomaly: {predictions[0] == -1}")
         time.sleep(0.1)
 
-def main():
+
+import matplotlib.pyplot as plt
+
+def current_plot(stream):
+    
