@@ -43,3 +43,14 @@ def current_plot(stream):
         plt.pause(0.1)
     plt.show()
 
+def main():
+    stream = generate_data()
+
+    print("starting simulation...")
+    simulate()
+
+    print("starting visualization...")
+    current_plot()
+
+if __name__ == "__main__":
+    main()
