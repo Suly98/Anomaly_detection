@@ -32,4 +32,14 @@ def simulate():
 import matplotlib.pyplot as plt
 
 def current_plot(stream):
-    
+    plt.ion()
+    fig, ax = plt.subplots()
+    data = []
+    for point in stream:
+        data.append(point)
+        ax.clear()
+        ax.plot(data, label='Data Stream')
+        ax.scatter(len(data)-1, point, color='red' if anomalies_detector([point])[0] == -1 else 'green')
+        plt.pause(0.1)
+    plt.show()
+
