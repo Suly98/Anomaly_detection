@@ -4,6 +4,7 @@
 import numpy as np
 from sklearn.ensemble import IsolationForest
 import matplotlib.pyplot as plt
+import time
 
 def generate_data(size = 1000):
     normal_data = np.random.normal(0, 1, size)
@@ -22,6 +23,7 @@ def simulate(stream):
     predictions = anomalies_detector(stream)
     for i,point in enumerate(stream):
         print(f"Data: {point}, Anomaly: {predictions[i] == -1}")
+        time.sleep(0.08)
 
 def current_plot(stream):
     plt.ion()
@@ -34,8 +36,9 @@ def current_plot(stream):
         ax.plot(data, label='Data Stream', color='blue')
 
         if predictions[i] == -1:
-            ax.scatter(len(data) -1 , point, color='red', label='Anamoly')
-        plt.pause(0.08)
+            ax.scatter(len(data) -1 , point, color='red', label='Anomaly')
+        plt.pause(0.001)
+
     plt.show()
 
 def main():
