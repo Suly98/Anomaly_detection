@@ -23,9 +23,10 @@ def simulate(stream):
     predictions = anomalies_detector(stream)
     for i,point in enumerate(stream):
         print(f"Data: {point}, Anomaly: {predictions[i] == -1}")
-        time.sleep(0.08)
+        time.sleep(0.001)
 
 def current_plot(stream):
+    predictions = anomalies_detector(stream)
     plt.ion()
     fig, ax = plt.subplots()
     data = []
@@ -37,8 +38,9 @@ def current_plot(stream):
 
         if predictions[i] == -1:
             ax.scatter(len(data) -1 , point, color='red', label='Anomaly')
-        plt.pause(0.001)
+        plt.pause(0.0001)
 
+    ax.legend()
     plt.show()
 
 def main():
