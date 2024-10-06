@@ -16,11 +16,19 @@ def generate_data(size = 1000):
     args: size - total number of data points to generate.
     Returns: data_stream - a shuffled array of normal and anomalous data.
     """
-    normal_data = np.random.normal(0, 1, size)  # generating normal data
-    anomalies = np.random.uniform(10, 15, size//100) #generatin anomaly data
-    data_stream = np.concatenate((normal_data, anomalies)) # mixing them together
-    np.random.shuffle(data_stream) # shuffling normal data with anomaly data
-    return data_stream
+
+    try:
+        if not isinstance(size, int) or size <= 0:
+            raise ValueError("Size must be a positive integer.")
+        normal_data = np.random.normal(0, 1, size)  # generating normal data
+        anomalies = np.random.uniform(10, 15, size//100) #generatin anomaly data
+        data_stream = np.concatenate((normal_data, anomalies)) # mixing them together
+        np.random.shuffle(data_stream) # shuffling normal data with anomaly data
+        return data_stream
+    
+    except ValueError as e:
+        print(f"Error in generate_data: {e}")
+        return None
 
 def anomalies_detector(data_stream):
     """
@@ -28,7 +36,14 @@ def anomalies_detector(data_stream):
 
     Args: data_stream - a shuffled array of normal and anomalous data points.
     Returns: predictions - a shuffled array 1,-1 where -1 are anomalous data. 
+
+    Isolation Forest is an ensemble method that isolates anomalies instead of profiling normal data. 
+    It performs well in high-dimensional datasets and is effective for detecting anomalies in various types of data streams especialy big data sets.
+
+
     """
+
+    
     isolate_forest = IsolationForest(contamination = 0.1) #starting the algorithm with %10 prediction in having anomalies
     data = np.array(data_stream).reshape(-1,1) #reshaping data so algorithm defines outliers
     predictions = isolate_forest.fit_predict(data) #making the algorithm work
@@ -51,7 +66,7 @@ def current_plot(stream):
     Visualize the data stream with outliers marked in real time.
 
     Args: stream - The data stream to plot
-    Reeurns: None
+    Returns: None
     """
     predictions = anomalies_detector(stream) 
     plt.ion() #adding every update while the script is running
