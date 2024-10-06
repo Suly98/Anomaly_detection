@@ -18,7 +18,7 @@ def generate_data(size = 1000):
     """
 
     try:
-        if not isinstance(size, int) or size <= 0:
+        if not isinstance(size, int) or size <= 0 or None:
             raise ValueError("Size must be a positive integer.")
         normal_data = np.random.normal(0, 1, size)  # generating normal data
         anomalies = np.random.uniform(10, 15, size//100) #generatin anomaly data
