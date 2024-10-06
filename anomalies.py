@@ -39,11 +39,7 @@ def anomalies_detector(data_stream):
 
     Isolation Forest is an ensemble method that isolates anomalies instead of profiling normal data. 
     It performs well in high-dimensional datasets and is effective for detecting anomalies in various types of data streams especialy big data sets.
-
-
     """
-
-    
     isolate_forest = IsolationForest(contamination = 0.1) #starting the algorithm with %10 prediction in having anomalies
     data = np.array(data_stream).reshape(-1,1) #reshaping data so algorithm defines outliers
     predictions = isolate_forest.fit_predict(data) #making the algorithm work
@@ -98,14 +94,21 @@ def main():
     Args: None
     Returns: None
     """
+    try:
+        stream = generate_data()
+        if stream is None:
+            print("Failed to generate data stream.")
+            return  
 
-    stream = generate_data()
+        print("starting simulation...")
+        simulate(stream)
 
-    print("starting simulation...")
-    simulate(stream)
+        print("starting visualization...")
+        current_plot(stream)
 
-    print("starting visualization...")
-    current_plot(stream)
+    except Exception as e:
+        print(f"An error occurred: {e}")
+
 
 # this will help other developers when they use the script to deploy
 # and it is to control the flow of the execution. 
