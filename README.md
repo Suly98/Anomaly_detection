@@ -13,4 +13,4 @@ This project implements an efficient anomaly detection system for continuous dat
 1. **Clone the Repository:**
    ```bash
    git clone https://github.com/suly98/anomaly_detection.git
-   cd anomaly_detection_project
+   cd anomaly_detection
