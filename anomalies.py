@@ -1,14 +1,17 @@
-## hello there
-## this file is a python script that will detect anomalies in a coninues data stream!
+"""
+A python script that will detect anomalies in a coninues data stream!
+"""
+
+import time
 
 import numpy as np
 from sklearn.ensemble import IsolationForest
 import matplotlib.pyplot as plt
-import time
+
 
 # func to generate data and outliers
 def generate_data(size = 1000):
-    normal_data = np.random.normal(0, 1, size) #generating normal data
+    normal_data = np.random.normal(0, 1, size)  # generating normal data
     anomalies = np.random.uniform(10, 15, size//100) #generatin anomaly data
     data_stream = np.concatenate((normal_data, anomalies)) # mixing them together
     np.random.shuffle(data_stream) # shuffling normal data with anomaly data
@@ -42,6 +45,12 @@ def current_plot(stream):
 
         if predictions[i] == -1: # if data is anomaly put it in red.
             ax.scatter(len(data) -1 , point, color='red', label='Anomaly') 
+
+
+        ax.set_xlabel('Time')
+        ax.set_ylabel('Data Value')
+
+        ax.set_title('Real-Time Data Stream with Anomalies')
         plt.pause(0.0001) #not really necessary but to make it in real time.
 
     ax.legend() # displaying the label in reference to the blue line
