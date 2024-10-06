@@ -1,16 +1,45 @@
-# Efficient Data Stream Anomaly Detection
+# Anomaly Detection in Data Streams
 
-## Project Description
+## Overview
+This project implements a Python script to detect anomalies in continuous data streams using the Isolation Forest algorithm. It simulates a real-time data stream and visualizes detected anomalies.
 
-This project implements an efficient anomaly detection system for continuous data streams using Python 3. The system simulates a real-time data stream with normal and anomalous data points and employs the Isolation Forest algorithm to detect anomalies.
+## Features
+- Generates synthetic data streams with normal and anomalous values.
+- Implements the Isolation Forest algorithm for effective anomaly detection.
+- Visualizes data streams in real-time with highlighted anomalies.
 
-## Algorithm Selection
+## Requirements
+- Python 3.x
+- NumPy
+- Matplotlib
+- Scikit-learn
 
-**Isolation Forest** was chosen for its efficiency and effectiveness in handling high-dimensional data. It works by isolating anomalies instead of profiling normal data points, making it suitable for real-time applications.
+## Installation
+To install the required packages, run the following:
 
-## Setup and Installation
+```bash
+pip install -r requirements.txt
+```
 
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/suly98/anomaly_detection.git
-   cd anomaly_detection
+## Usage
+To run the script, execute:
+
+```bash
+python3 anomalies.py
+```
+
+## Testing
+Unit tests are included to validate functionality. To run the tests, use:
+
+```bash
+python -m unittest test_anomalies.py
+```
+
+## Contributing
+Feel free to fork the repository and submit pull requests for improvements or bug fixes.
+
+
+
+
+
+
